@@ -15,7 +15,7 @@ export default function Utils() {
   const Button = ({ task }) => (
     <div className="flex-1 mb-5">
       <button
-        className="border px-8 py-2 mt-5 mr-8 font-bold rounded-full color-accent-contrast bg-color-accent hover:bg-color-accent-hover-darker"
+        className="border px-8 py-2 mt-5 mr-8 font-bold rounded-full color-accent-contrast bg-color-accent hover:bg-blue-100 focus:bg-color-accent-hover-darker focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-100 active:shadow-lg transition duration-150 ease-in-out"
         onClick={async () => {
           await fetch("/api/utils", {
             body: JSON.stringify({

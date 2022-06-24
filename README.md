@@ -45,10 +45,21 @@ npm install -D @faker-js/faker
 2. Components added for Post and Posts.
 3. 'index.js' updated to use new components.
 4. Flavio likes to use 'export default function MyFunction(someInput) {}' instead of using arrow functions:
+
 ```
 const MyFunction = (someInput) => {
 
 }
 export default MyFunction
 ```
+
 The reason is for debugging purposes - function name is available in the former and not the latter.
+
+## Implement Signup, Login, Logout, and User Selection
+
+1. Add a signup link in the 'header' of 'index.js' Flavio uses the CSS 'href', but that generates a warning to use 'next/link', which I have done.
+2. Fixed the padding and case on the 'header' elements.
+3. Login is connected to mailtrap.io as before. Added the changes from Week 10 to next.config.js to eliminate any issues with 'home'.
+4. Mailtrap.io was not receiving the requests for some reason, so credentials have been reset....
+5. All users will have a username....
+6. In this section, we'll add the 'pages/setup.js' and 'api/setup.js' to handle the login and logout. The 'setup' form also ensures that the user name is at least 5 characters and is alpha/numeric.

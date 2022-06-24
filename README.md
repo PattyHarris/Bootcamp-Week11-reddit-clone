@@ -63,3 +63,11 @@ The reason is for debugging purposes - function name is available in the former 
 4. Mailtrap.io was not receiving the requests for some reason, so credentials have been reset....
 5. All users will have a username....
 6. In this section, we'll add the 'pages/setup.js' and 'api/setup.js' to handle the login and logout. The 'setup' form also ensures that the user name is at least 5 characters and is alpha/numeric.
+
+## Implement the Single Subreddit View
+
+1.  Here we will only see posts for a given subreddit.
+2.  We create an 'r' folder under pages for the dynamic routing since our paths are '/r/...' which is weird. Under the folder 'r' is the page '[subreddit].js' - a dynamic page that receives the name of a subreddit as the parameter. This is available in 'getServerSideProps()' in 'params.subreddit'.
+3.  Add 2 functions to 'data.js':' getSubreddit()' and 'getPostsFromSubreddit()'. Note that in 'getPostsFromSubreddit()' where clause, the Prisma filter on relations is used. This could have been done with a where clause subredditName: subreddit - the former was used to introduce another feature.
+4.  Add a link from the subreddit page back to the home page in '[subbreddit].js'
+5.  Add a link from a post to the subreddit in 'Post.js'.

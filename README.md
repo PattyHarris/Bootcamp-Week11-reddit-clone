@@ -76,4 +76,9 @@ The reason is for debugging purposes - function name is available in the former 
 
 1. Here we'll see posts and comments. The URL here is '/r/<SUBREDDIT NAME>/comments/<UNIQUE POST ID>/'. Under the 'r' folder, we'll need a '[subreddit]' and under that, we'll need a 'comments' folder. Inside the 'comments' folder, add the '[id].js' file. This file will contain the post and subreddit data.
 2. Access the data we need here with a new function in data.js: 'getPost()'.
-3. The end result is that from the home page, the timestamp and title of the post is a link to the post. UI here is terrible.....
+3. The end result is that from the home page, the timestamp and title of the post is a link to the post. UI here is terrible.....''
+
+## Create a Consistent Header
+
+1. In this section, we're creating a header bar for each page that provides a somewhat consistent interface for each page.
+2. Just by chance, the subreddit description I tested was 2 lines, which made it disappear in the given space. I needed to increase the padding to 20 (instead of 2).

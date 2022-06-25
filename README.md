@@ -71,3 +71,9 @@ The reason is for debugging purposes - function name is available in the former 
 3.  Add 2 functions to 'data.js':' getSubreddit()' and 'getPostsFromSubreddit()'. Note that in 'getPostsFromSubreddit()' where clause, the Prisma filter on relations is used. This could have been done with a where clause subredditName: subreddit - the former was used to introduce another feature.
 4.  Add a link from the subreddit page back to the home page in '[subbreddit].js'
 5.  Add a link from a post to the subreddit in 'Post.js'.
+
+## Create the Single Post View
+
+1. Here we'll see posts and comments. The URL here is '/r/<SUBREDDIT NAME>/comments/<UNIQUE POST ID>/'. Under the 'r' folder, we'll need a '[subreddit]' and under that, we'll need a 'comments' folder. Inside the 'comments' folder, add the '[id].js' file. This file will contain the post and subreddit data.
+2. Access the data we need here with a new function in data.js: 'getPost()'.
+3. The end result is that from the home page, the timestamp and title of the post is a link to the post. UI here is terrible.....

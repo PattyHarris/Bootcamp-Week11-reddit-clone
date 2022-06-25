@@ -10,15 +10,21 @@ export default function Post({ post }) {
             <Link href={`/r/${post.subredditName}`}>
               <a className="mr-2 underline">/r/{post.subredditName}</a>
             </Link>
-            /r/{post.subredditName} Posted by {post.author.name}{" "}
-            {timeAgo.format(new Date(post.createdAt))}
+            Posted by {post.author.name}{" "}
+            <Link href={`/r/${post.subredditName}/comments/${post.id}`}>
+              <a className="mx-2 underline">
+                {timeAgo.format(new Date(post.createdAt))}
+              </a>
+            </Link>
           </div>
         </div>
       </div>
-      <div className="mt-5">
-        <p className="flex-shrink text-2xl font-bold color-primary width-auto">
-          {post.title}
-        </p>
+      <div className="mt-1">
+        <Link href={`/r/${post.subredditName}/comments/${post.id}`}>
+          <a className="flex-shrink text-2xl font-bold color-primary width-auto">
+            {post.title}
+          </a>
+        </Link>
         <p className="flex-shrink text-base font-normal color-primary width-auto mt-2">
           {post.content}
         </p>

@@ -5,9 +5,9 @@ import timeAgo from "lib/timeago";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import NewComment from "components/NewComment";
+import Comments from "components/Comments";
 
 export default function Post({ subreddit, post }) {
-
   const { data: session, status } = useSession();
 
   if (!post) {
@@ -62,6 +62,7 @@ export default function Post({ subreddit, post }) {
             to add a comment
           </p>
         )}
+        <Comments comments={post.comments} />
       </div>
     </>
   );

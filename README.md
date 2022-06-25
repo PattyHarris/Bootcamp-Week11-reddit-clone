@@ -89,3 +89,8 @@ The reason is for debugging purposes - function name is available in the former 
 2. Add a 'NewComment' component which will be included in the 'Post' component. The requests are handled by 'api/comment.js'. We may also allow comments to comments, so the 'NewComment' component can be re-used for that purpose.
 3. Import the 'NewComment' component to '[id].js' and add to the page. Conditional added to check that the user is logged in.
 4. To test the 'login' check, open an incognito window - that will not have the session set and will indicate that the user needs to log in...
+
+## Show the Post Comments
+
+1. Add a 'Comments' component to handle showing comments. The new component is imported into '[id].js' and added to the JSX at the bottom.
+2. 'getPost' in data.js is updated to include the comments for a given post.

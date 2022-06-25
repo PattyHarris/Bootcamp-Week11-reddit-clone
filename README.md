@@ -82,3 +82,10 @@ The reason is for debugging purposes - function name is available in the former 
 
 1. In this section, we're creating a header bar for each page that provides a somewhat consistent interface for each page.
 2. Just by chance, the subreddit description I tested was 2 lines, which made it disappear in the given space. I needed to increase the padding to 20 (instead of 2).
+
+## Provide Comment Input
+
+1. Add UI to enable people to add their own comments - this will occur in the 'Post' view.
+2. Add a 'NewComment' component which will be included in the 'Post' component. The requests are handled by 'api/comment.js'. We may also allow comments to comments, so the 'NewComment' component can be re-used for that purpose.
+3. Import the 'NewComment' component to '[id].js' and add to the page. Conditional added to check that the user is logged in.
+4. To test the 'login' check, open an incognito window - that will not have the session set and will indicate that the user needs to log in...

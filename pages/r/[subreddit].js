@@ -21,7 +21,6 @@ export default function Subreddit({ subreddit, posts }) {
         <p className="text-center">/r/{subreddit.name}</p>
         <p className="ml-4 text-left grow">{subreddit.description}</p>
       </header>{" "}
-      <p className="text-center p-5">/r/{subreddit.name}</p>
       <Posts posts={posts} />
     </>
   );

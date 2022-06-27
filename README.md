@@ -94,3 +94,13 @@ The reason is for debugging purposes - function name is available in the former 
 
 1. Add a 'Comments' component to handle showing comments. The new component is imported into '[id].js' and added to the JSX at the bottom.
 2. 'getPost' in data.js is updated to include the comments for a given post.
+
+## Add Up and Down Votes on Posts
+
+1. In '[id].js', addition JSX is added to add the UI. The rules regarding the arrow is that the user can only vote once (e.g. can't vote up and then vote down).
+2. Changes in the section are a bit confusing, but in essence the changes will be in 'pages/r/[subreddit]/comments/[id].js' and data.js. The api is handled in a new handler, 'pages/api/vote.js'.
+3. In the 'vote.js' file, to ensure that only one vote is allowed per user, we use the upsert() method provided by Prisma to update or insert a value if it’s not there.
+4. Add 'getVote' to data.js - this is then used in '[id].js' 'getServerSideProps'. Note the use of 'session?' - in case the user is not logged in...here we also could have used 'findFirst' instead of 'findMany'....
+5. Note that in 'getServerSideProps'm '{params}' is changed to '{context}' in the argument of the function because we need it for' getSession()'.
+6. The 'fat arrow' is used to indicate that the vote is the logged in user's vote...otherwise, we show the 'small arrow'....seems weird.
+

@@ -113,3 +113,18 @@ The reason is for debugging purposes - function name is available in the former 
 5. The new post form page is linked from the subreddit page. We're mimicking Reddit where you have a fake form and when you click it, you’re redirected to the '/submit' URL. See changes to 'pages/r/[subreddit].js'. Again, only show the form if the user is logged in...
 6. How this all works, is that for a given subreddit, you'll see a "post' text area, and when you click on it, you're taking to a form page where you actually enter the post....
 7. Instead of showing the user that they are not logged in, we could instead redirect them to the login page...
+
+## Enable Comments on Comments
+
+1. First we need to change the schema to allow Comments to have Comments.
+2. Steps:
+   1. have a “reply” text below each comment
+   2. when the “reply” text is clicked, show a form to reply with a comment
+   3. implement the form to send the data to our API
+   4. store that comment in the database
+   5. display comments made to comments
+3. In the component 'Comments.js', add a clickable 'reply' text that shows the form from the 'NewComment' component. The form is embedded in the 'Comment' component..
+4. For each comment, we need both the post information and the parent comment id - so in 'NewComment.js' add 'comment' as a prop.
+5. On the server side, the comments are handled in 'pages/api/comment.js'.
+6. Fetching comments: a new property 'comments' is added to each comment ('data.js') - see 'getPost'.
+7. Back to 'components/Comments.js' to display the nested comments where we add a little JSX recursion to display comments made to comments.

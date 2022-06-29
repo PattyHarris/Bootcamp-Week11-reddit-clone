@@ -128,3 +128,54 @@ The reason is for debugging purposes - function name is available in the former 
 5. On the server side, the comments are handled in 'pages/api/comment.js'.
 6. Fetching comments: a new property 'comments' is added to each comment ('data.js') - see 'getPost'.
 7. Back to 'components/Comments.js' to display the nested comments where we add a little JSX recursion to display comments made to comments.
+
+## Allow Posts with Images
+
+1. We'll be using AWS S3 to host images since Vercel doesn't allow images - e.g. on Vercel there is no persistent image storage.
+2. After setting up the AWS account, from the console, under Security, Identity, and Compliance, select the IAM service.
+3. Add a new user, e.g. Bootcamp-pHarry.
+4. Select AWS credential type pick Access key - Programmatic access. Click on the 'Next: Permissions' button.
+5. Click' Attach existing policies directly' and search for and click 'AWSCloudFormationFullAccess' and 'AmazonS3FullAccess'. Click the 'Next: Tags' button.
+6. Click 'Next: Review' and then click 'Create user'. The details for the user are downloaded in the Week 11 folder....
+7. Add the secret and key to the .env file:
+
+```
+AWS_S3_ACCESS_KEY_ID=ACCESS KEY
+AWS_S3_SECRET_ACCESS_KEY=SECRET KEY
+AWS_S3_BUCKET_NAME=bootcamp-flavio
+```
+
+8. Select the S3 service https://s3.console.aws.amazon.com/s3/home and created a bucket, e.g. bootcamp-pharry (no capital letters allowed). Uncheck 'Block all public access' and click 'Create bucket'.
+9. In the bucket details 'Permissions' tab, 'Bucket Policy', paste the following and click save. There will be a warning about the bucket being publicly accessible (this to make the uploaded images accessible by our users).
+
+```
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPublicRead",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::YOURBUCKETNAME/*"
+        }
+    ]
+}
+```
+
+10. Install the following:
+
+```
+npm install aws-sdk next-connect multiparty
+```
+
+next-connect is used for middleware
+
+1.  In short, uploading images using a form is different than sending JSON through a form. For this to work, we need to add some middleware. Create 'middleware/middleware.js'. The code in 'middleware.js' will make sure the form data is in 'req.body', and any files data in r'eq.files'.
+2.  Refactor 'pages/api/post.js' to use the middleware.
+3.  Refactor 'pages/r/[subreddit]/submit.js' to allow sending images. Here we're using FormData: FormData is an object offered us by the Web Platform (the browser, in this case) to store form data. We use it to store the content of the image and send it to the server. See the tutorial for links about this module.
+4.  Refactor 'api/posts.js' to upload the image.
+5.  In components/Posts.js and pages/r/[subreddit]/comments/[id].js add the post image just before the 'post.content'. Note the changes that include '[0]' - it's not explained well, but these are needed for the new form handling changes.
+6.  FormData: Flavio indicates that he was unable to include the 'header' data in the post request due to some bug that he couldn't solve....

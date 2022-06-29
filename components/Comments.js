@@ -1,5 +1,6 @@
 import timeAgo from "lib/timeago";
 import React, { useState } from "react";
+import Link from "next/link";
 import NewComment from "./NewComment";
 
 const Comment = ({ comment, post }) => {
@@ -8,9 +9,13 @@ const Comment = ({ comment, post }) => {
   return (
     <div className=" mt-6">
       <p>
-        {comment.author.name} {timeAgo.format(new Date(comment.createdAt))}
+        <Link href={`/u/${comment.author.name}`}>
+          <a className="underline">{comment.author.name}</a>
+        </Link>{" "}
+        {timeAgo.format(new Date(comment.createdAt))}{" "}
       </p>
       <p>{comment.content}</p>
+
       {showReply ? (
         <div className="pl-10">
           <NewComment post={post} comment={comment} />

@@ -179,3 +179,10 @@ next-connect is used for middleware
 4.  Refactor 'api/posts.js' to upload the image.
 5.  In components/Posts.js and pages/r/[subreddit]/comments/[id].js add the post image just before the 'post.content'. Note the changes that include '[0]' - it's not explained well, but these are needed for the new form handling changes.
 6.  FormData: Flavio indicates that he was unable to include the 'header' data in the post request due to some bug that he couldn't solve....
+
+## User Profiles
+
+1. Add 'getUser' to data.js. Note that here we're using 'findUnique' which currently won't work in our schema - a minor change is needed to force the user name to be 'unique'.
+2. Add 'getPostsFromUser' as well to data.js.
+3. The user profile page will use the URL '/u/USERNAME' so we’ll create the file pages/u/[name].js.
+4. We'll link to this page everywhere we show the user name - so changes to' components/Comments.js', 'components/Post.js', and' pages/r/[subreddit]/comments/[id].js'.
